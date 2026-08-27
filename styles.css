@@ -1,0 +1,28 @@
+h1#names {
+    font-family: "Luxurious Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 10em;
+    margin: 0.1em;
+    margin-top: 0.5em;
+    text-align: center;
+    color: #634413FF;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    hyphens: auto;
+}
+
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+    font-family: "Charis SIL", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: #E7DFD4FF
+}
