@@ -1,31 +1,59 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // 1. Grab DOM elements
-    const rsvpDialog = document.getElementById('rsvp-dialog');
+    const rsvpDialog = document.getElementById('rsvp-dialog'); // Restored element
     const searchBtn = document.getElementById('search-btn');
     const guestsInvitedDiv = document.getElementById('guests-invited');
     const submitBtn = document.getElementById('submit-btn');
     const firstNameInput = document.querySelector('input[name="first-name"]');
     const lastNameInput = document.querySelector('input[name="last-name"]');
 
-    // 2. Hide the guest container by default
+    // Hide containers initially
     guestsInvitedDiv.style.display = 'none';
+    
+    // We will store our highly-optimized data here
+    let optimizedGuestMap = {};
 
-    // 3. Mock database
-    const guestDatabase = {
-        "dana bakri": ["Dana Bakri", "Faisal Naqaweh"],
-        "john doe": ["John Doe", "Jane Doe", "Baby Doe"]
-    };
+    // RESET LOGIC: Listens for whenever the dialog closes to clear previous searches
+    if (rsvpDialog) {
+        rsvpDialog.addEventListener('close', () => {
+            firstNameInput.value = '';       
+            lastNameInput.value = '';        
+            guestsInvitedDiv.innerHTML = ''; 
+            guestsInvitedDiv.style.display = 'none'; 
+            submitBtn.style.display = 'none'; // Ensure submit button hides on close
+        });
+    }
 
-    // 4. RESET LOGIC: Listens for whenever the dialog closes
-    rsvpDialog.addEventListener('close', () => {
-        firstNameInput.value = '';       // Clear first name field
-        lastNameInput.value = '';        // Clear last name field
-        guestsInvitedDiv.innerHTML = ''; // Wipe out generated table
-        guestsInvitedDiv.style.display = 'none'; // Hide the div container again
-        submitBtn.style.display = 'none';
-    });
+    // 1. BACKGROUND FETCH: Start downloading immediately on page load
+    try {
+        // UPDATED: Replace 'YOUR_API_ID' with your generated SheetDB ID
+        // The ?sheet=Groups ensures it only pulls from the correct tab
+        const response = await fetch('https://sheetdb.io/api/v1/uaea0471hklew?sheet=Groups');
+        const sheetData = await response.json();
 
-    // 5. Search button click logic
+        // 2. OPTIMIZATION PASS 1: Group everyone by their GroupID
+        const groupsByID = {};
+        sheetData.forEach(row => {
+            if (!groupsByID[row.GroupID]) {
+                groupsByID[row.GroupID] = []; // Create the array if it doesn't exist
+            }
+            groupsByID[row.GroupID].push(row); // Add the person to their group
+        });
+
+        // 3. OPTIMIZATION PASS 2: Map every lowercase name directly to their full group
+        sheetData.forEach(row => {
+            // Ensures safety just in case there are blank rows in the Google Sheet
+            if (row.GuestName) {
+                const searchName = row.GuestName.toLowerCase().trim();
+                optimizedGuestMap[searchName] = groupsByID[row.GroupID]; 
+            }
+        });
+
+    } catch (error) {
+        console.error("Failed to preload guest list:", error);
+    }
+
+    // 4. SEARCH LOGIC: Now instantaneous
     searchBtn.addEventListener('click', (event) => {
         event.preventDefault(); 
         
@@ -33,42 +61,44 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastName = lastNameInput.value.trim().toLowerCase();
         const searchName = `${firstName} ${lastName}`.trim();
 
-        if (guestDatabase[searchName]) {
+        if (firstName === "" && lastName === "") {
+            guestsInvitedDiv.innerHTML = '<p>Both first and last name required.</p>';
+            guestsInvitedDiv.style.display = 'block';
+            submitBtn.style.display = 'none';
+            return; 
+        }
+
+        // INSTANT LOOKUP: No looping required! 
+        const groupMembers = optimizedGuestMap[searchName];
+
+        if (groupMembers) {
             let tableHTML = `
                 <table>
                     <tr>
                         <th>Guest Invited</th>
                         <th>Attendance</th>
-                        <th>Vegetarian</th>
+                        <th>Dietary Restrictions*</th>
                     </tr>
             `;
 
-            guestDatabase[searchName].forEach(guestName => {
+            groupMembers.forEach(member => {
                 tableHTML += `
                     <tr>
-                        <td>${guestName}</td>
+                        <td>${member.GuestName}</td>
                         <td><input name="attendance" type="checkbox" checked /></td>
-                        <td><input name="veggie" type="checkbox" /></td>
+                        <td><input name="diet" /></td>
                     </tr>
                 `;
             });
 
             tableHTML += `</table>`;
-
             guestsInvitedDiv.innerHTML = tableHTML;
             guestsInvitedDiv.style.display = 'block';
             submitBtn.style.display = 'block';
+
         } else {
-            // This is the case in which there is no match. We need to check against a couple cases.
-            // 1. Is one of the fields empty? 
+            guestsInvitedDiv.innerHTML = '<p>You\'re not invited. Oops.</p>';
             guestsInvitedDiv.style.display = 'block';
-            let errMsg = "";
-            if (firstName == "" || lastName == "") {
-                errMsg = '<p>Both first and last name required.</p>';
-            } else {
-                errMsg = '<p>You\'re not invited. Oops.</p>';
-            }
-            guestsInvitedDiv.innerHTML = errMsg; 
             submitBtn.style.display = 'none';
         }
     });
