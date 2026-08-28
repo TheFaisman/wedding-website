@@ -1,28 +1,85 @@
+html {
+    scroll-behavior: smooth;
+}
+
 h1#names {
     font-family: "Luxurious Script", cursive;
     font-weight: 400;
     font-style: normal;
     font-size: 10em;
-    margin: 0.1em;
-    margin-top: 0.5em;
+    margin: 0em;
     text-align: center;
-    color: #634413FF;
+    background: linear-gradient(180deg, #3C290B, #634413FF, #9B7A3E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
     overflow-wrap: break-word;
     word-wrap: break-word;
     white-space: normal;
     hyphens: auto;
 }
 
+nav {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
 .banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 65%;
-    font-family: "Charis SIL", serif;
-    font-weight: 400;
-    font-style: normal;
+    width: 800px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.nav-link {
+    diplay: inline-block;
+    padding: 0.3em 0.5em;
+    color: #634413FF;
+    text-decoration: none;
+    border-bottom: 3px solid #634413FF;
+    padding-bottom: 6px;
+    transition: border-color 0.3s, background-color 0.3s;
+    font-size: 2em;
+}
+
+.nav-link:hover {
+    border-image: linear-gradient(90deg, #634413FF, #9B7A3E, #634413FF) 1;
+    background-color: rgba(99, 68, 19, 0.1);
+}
+
+.nav-link:active {
+    transform: scale(0.95);
 }
 
 body {
-    background-color: #E7DFD4FF
+    background-color: #E7DFD4FF;
+    color: #3C290B;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
+
+#family-crest {
+    display: block;
+    margin: 0 auto;
+}
+
+main {
+    width: 1000px;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3 {
+    font-size: 1.5em;
 }

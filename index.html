@@ -2,32 +2,48 @@
 <html lang="en-US">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <script src="scripts.js" defer></script>
         <title>Wedding Website</title>
     </head>
+    <body>
 <header>
     <h1 id="names">Faisal & Dana</h1>
-    <nav>
-        <ul class="banner">
-            <li class="item"><a href="#welcome">Welcome</a></li>
-            <li class="item"><a href="#rsvp">RSVP</a></li>
-            <li class="item"><a href="#schedule">Schedule</a></li>
-            <li class="item"><a href="#q&a">Q&A</a></li>
-        </ul>
+    <nav id="link-nav">
+        <div class="banner">
+            <a class="nav-link" href="#welcome">Welcome</a>
+            <a class="nav-link" href="#rsvp">RSVP</a>
+            <a class="nav-link" href="#schedule">Schedule</a>
+            <a class="nav-link" href="#q&a">Q & A</a>
+        </div>
     </nav>
 </header>
 <main>
-    <img src="assets/logo.png" alt="Logo with initials">
+    <div id="content">
+    <img id="family-crest" src="assets/logo.png" alt="Logo with initials">
     <h2 id="welcome">Welcome</h2>
-    <p>Invite goes here</p>
     <h2 id="rsvp">RSVP</h2>
-    <p>Form of rsvp goes here</p>
+    <button command="show-modal" commandfor="rsvp-dialog">RSVP</button>
+    <dialog id="rsvp-dialog">
+        <button command="close" commandfor="rsvp-dialog">Close</button><br>
+        <h3>RSVP Form</h3>
+        <label>
+            First Name: <input name="first-name" required><br>
+            Last Name: <input name="last-name" required>
+        </label>
+        <br>
+        <button id="search-btn">Search</button>
+        <div id="guests-invited">
+        </div>
+        <button command="close" commandfor="rsvp-dialog" id="submit-btn" style="display: none">Submit</button>
+        <br>
+    </dialog>
     <h2 id="schedule">Schedule</h2>
     <h3>Sunday October 18th, 2026</h3>
     <ul>
@@ -66,20 +82,22 @@
         </li>
     </ul>
     <h2 id="q&a">Q&A</h2>
-    <p>For friends and family who have questions</p>
-    <h4>What's the RSVP deadline?</h4>
-    <p>Tomorrow</p>
-    <h4>Are kids welcome?</h4>
-    <p>Never</p>
-    <h4>Where can I park?</h4>
+    <p>For friends and family who have questions.</p>
+    <h3>What's the RSVP deadline?</h3>
+    <p>Tomorrow.</p>
+    <h3>Are kids welcome?</h3>
+    <p>Never.</p>
+    <h3>Where can I park?</h3>
     <p>At home. There's no parking on site, so make sure to take an uber.</p>
-    <h4>Can we play golf?</h4>
+    <h3>Can we play golf?</h3>
     <p>Absolutely! The golf course is open for all guests to play.</p>
-    <h4>How fast does the golf cart go?</h4>
-    <p>Top speed reaches 45 km/h</h4>
-    <h4>What's your favourite colour?</h4>
+    <h3>How fast does the golf cart go?</h3>
+    <p>Top speed reaches 45 km/h.</p>
+    <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
+</div>
 </main>
+    </body>
 <footer>
 </footer>
 </html>
