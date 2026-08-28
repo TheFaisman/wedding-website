@@ -38,17 +38,17 @@ nav {
 
 .sticky-nav {
   position: sticky;
-  top: 0;
+  top: 20px;
   z-index: 100;
   background-color: #4A3315;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 0;
-  
+  margin-top: 20px;
   /* Initial states that JS will overwrite */
   border-radius: 20px; 
-  width: 90%;
+  width: 800px;
   margin: 0 auto;
 }
 
@@ -137,6 +137,7 @@ body {
 }
 
 main {
+    padding-top: 250px;
     width: 1000px;
     display: block;
     margin: 0 auto;

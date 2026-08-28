@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     // The distance in pixels over which the animation completes.
     // Increase this number to make the shrinking happen over a longer scroll distance.
-    const maxScroll = 150; 
+    const maxScroll = 350; 
   
     // A flag to ensure we don't overwhelm the browser with scroll events
     let ticking = false;
@@ -31,8 +31,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         crest.style.width = `${currentWidth}px`;
         crest.style.transform = `translate(-50%, ${currentY}px)`;
     
-        stickyNav.style.width = `${currentNavWidth}%`;
-        stickyNav.style.borderRadius = `${currentRadius}px`;
+        //stickyNav.style.width = `${currentNavWidth}%`;
+        //stickyNav.style.borderRadius = `${currentRadius}px`;
 
         // Reset the flag so the next frame can run
         ticking = false;
