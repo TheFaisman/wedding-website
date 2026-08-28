@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Hide containers initially
     guestsInvitedDiv.style.display = 'none';
+    submitBtn.style.display = 'none';
     
     // We will store our highly-optimized data here
     let optimizedGuestMap = {};
@@ -26,10 +27,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 1. BACKGROUND FETCH: Start downloading immediately on page load
     try {
-        // UPDATED: Replace 'YOUR_API_ID' with your generated SheetDB ID
-        // The ?sheet=Groups ensures it only pulls from the correct tab
         const response = await fetch('https://sheetdb.io/api/v1/uaea0471hklew?sheet=Groups');
         const sheetData = await response.json();
+
+        if (!Array.isArray(sheetData)) {
+            console.error("API did not return an array. Response was:", sheetData);
+            return; 
+        }
 
         // 2. OPTIMIZATION PASS 1: Group everyone by their GroupID
         const groupsByID = {};
@@ -84,7 +88,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             groupMembers.forEach(member => {
                 tableHTML += `
                     <tr>
-                        <td>${member.GuestName}</td>
+                        <td class="guest-name">${member.GuestName}</td>
                         <td><input name="attendance" type="checkbox" checked /></td>
                         <td><input name="diet" /></td>
                     </tr>
@@ -100,6 +104,57 @@ document.addEventListener('DOMContentLoaded', async () => {
             guestsInvitedDiv.innerHTML = '<p>You\'re not invited. Oops.</p>';
             guestsInvitedDiv.style.display = 'block';
             submitBtn.style.display = 'none';
+        }
+    });
+
+    // 5. SUBMIT LOGIC: Posting data to the RSVPs Tab
+    submitBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const rows = guestsInvitedDiv.querySelectorAll('tr');
+        const rsvpDataArray = [];
+
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            const guestName = row.querySelector('.guest-name').textContent;
+            const isAttending = row.querySelector('input[name="attendance"]').checked;
+            const dietaryInput = row.querySelector('input[name="diet"]').value.trim();
+
+            rsvpDataArray.push({
+                GuestName: guestName,
+                Attendance: isAttending ? "Yes" : "No",
+                Vegetarian: dietaryInput || "None"
+            });
+        }
+
+        try {
+            submitBtn.textContent = "Submitting...";
+            submitBtn.disabled = true;
+
+            const response = await fetch('https://sheetdb.io/api/v1/uaea0471hklew?sheet=RSVPs', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: rsvpDataArray })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert("RSVP submitted successfully!");
+                rsvpDialog.close();
+            } else {
+                alert("Error submitting RSVP. Please try again.");
+                console.error("Submission error:", result);
+            }
+        } catch (error) {
+            console.error("Network error during submission:", error);
+            alert("Network error. Please check your connection.");
+        } finally {
+            submitBtn.textContent = "Submit";
+            submitBtn.disabled = false;
         }
     });
 });
