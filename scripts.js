@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchBtn = document.getElementById('search-btn');
     const guestsInvitedDiv = document.getElementById('guests-invited');
     const submitBtn = document.getElementById('submit-btn');
+    const submitMsg = document.getElementById('submit-msg');
     const firstNameInput = document.querySelector('input[name="first-name"]');
     const lastNameInput = document.querySelector('input[name="last-name"]');
 
     // Hide containers initially
     guestsInvitedDiv.style.display = 'none';
     submitBtn.style.display = 'none';
+    submitMsg.style.display = 'none';
     
     // We will store our highly-optimized data here
     let optimizedGuestMap = {};
@@ -23,6 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             guestsInvitedDiv.innerHTML = ''; 
             guestsInvitedDiv.style.display = 'none'; 
             submitBtn.style.display = 'none';
+            submitMsg.style.display = 'none';
+
         });
     }
 
@@ -104,6 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             guestsInvitedDiv.innerHTML = tableHTML;
             guestsInvitedDiv.style.display = 'block';
             submitBtn.style.display = 'block';
+            submitBtn.focus();
 
         } else {
             guestsInvitedDiv.innerHTML = '<p>You\'re not invited. Oops.</p>';
@@ -177,13 +182,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-            const submitMsg = document.getElementById('submit-msg');
             submitMsg.innerHTML = '<p>RSVP submitted successfully!</p>';
             submitMsg.style.display = 'block';
 
         } catch (error) {
             console.error("Error updating RSVP:", error);
-            alert("Error submitting RSVP. Please try again.");
+            submitMsg.innerHTML = '<p>RSVP submission failed.</p>';
+            submitMsg.style.display = 'block';
         } finally {
             submitBtn.textContent = "Submit";
             submitBtn.disabled = false;
