@@ -32,17 +32,83 @@ nav {
     width: 800px;
     margin: 0 auto;
     list-style: none;
+    background: linear-gradient(180deg, #3C290B, #3C290B, #634413FF);
+    border-radius: 30px;
+}
+
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #4A3315;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  
+  /* Initial states that JS will overwrite */
+  border-radius: 20px; 
+  width: 90%;
+  margin: 0 auto;
+}
+
+.nav-group {
+  display: flex;
+  gap: 3rem;
+  flex: 1;
+}
+
+.nav-group.left {
+  justify-content: flex-end;
+  padding-right: 4rem;
+}
+
+.nav-group.right {
+  justify-content: flex-start;
+  padding-left: 4rem;
+}
+
+.nav-group a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.crest-container {
+  position: relative;
+  width: 0; /* Zero width keeps the left/right nav groups perfectly balanced */
+}
+
+.crest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  
+  /* Initial states that JS will overwrite */
+  width: 350px; 
+  transform: translate(-50%, 30px); 
+  transform-origin: center center;
+  border-radius: 50%; 
+}
+
+body.scrolled .sticky-nav {
+  border-radius: 0; /* Flattens to a standard sticky header */
+  width: 100%;
+}
+
+body.scrolled .crest {
+  width: 60px; /* Shrinks to fit inside the bar */
+  /* Pulls it up to center exactly inside the navigation bar */
+  transform: translate(-50%, -50%); 
 }
 
 .nav-link {
     diplay: inline-block;
     padding: 0.3em 0.5em;
-    color: #634413FF;
+    color: #E7DFD4FF;
     text-decoration: none;
-    border-bottom: 3px solid #634413FF;
     padding-bottom: 6px;
-    transition: border-color 0.3s, background-color 0.3s;
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 .nav-link:hover {

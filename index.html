@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
+<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
@@ -11,11 +11,13 @@
 
         <script src="scripts.js" defer></script>
         <title>Wedding Website</title>
-    </head>
-    <body>
-<header>
-    <h1 id="names">Faisal & Dana</h1>
-    <nav id="link-nav">
+</head>
+<body>
+    <header>
+        <h1 id="names">Faisal & Dana</h1>
+    </header>    
+   
+    <nav >
         <div class="banner">
             <a class="nav-link" href="#welcome">Welcome</a>
             <a class="nav-link" href="#rsvp">RSVP</a>
@@ -23,10 +25,24 @@
             <a class="nav-link" href="#q&a">Q & A</a>
         </div>
     </nav>
-</header>
-<main>
-    <div id="content">
-    <img id="family-crest" src="assets/logo.png" alt="Logo with initials">
+    
+    <nav class="sticky-nav">
+        <div class="nav-group left">
+            <a class="" href="#welcome">Welcome</a>
+            <a class="" href="#rsvp">RSVP</a>
+        </div>
+
+        <div class="crest-container">
+            <img class="crest" src="assets/logo.png" alt="Logo with initials">
+        </div>
+                    
+        <div class="nav-group right">
+            <a class="" href="#schedule">Schedule</a>
+            <a class="" href="#q&a">Q & A</a>
+        </div>
+    </nav>
+
+    <main>
     <h2 id="welcome">Welcome</h2>
     <h2 id="rsvp">RSVP</h2>
     <button command="show-modal" commandfor="rsvp-dialog">RSVP</button>
@@ -96,7 +112,6 @@
     <p>Top speed reaches 45 km/h.</p>
     <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
-</div>
 </main>
     </body>
 <footer>
