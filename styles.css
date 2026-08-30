@@ -2,22 +2,22 @@ html {
     scroll-behavior: smooth;
 }
 
+header {
+    padding: 1.5rem 1rem;
+    text-align: center;
+}
+
 h1#names {
     font-family: "Luxurious Script", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: 10em;
-    margin: 0em;
-    text-align: center;
+    font-size: clamp(4.5rem, 6.5vw, 10rem);
+    white-space: nowrap;
+    margin: 0;
     background: linear-gradient(180deg, #3C290B, #634413FF, #9B7A3E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    white-space: normal;
-    hyphens: auto;
 }
 
 nav {
@@ -25,18 +25,7 @@ nav {
     margin-bottom: 20px;
 }
 
-.banner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 800px;
-    margin: 0 auto;
-    list-style: none;
-    background: linear-gradient(180deg, #3C290B, #3C290B, #634413FF);
-    border-radius: 30px;
-}
-
-.sticky-nav {
+nav.sticky-nav {
   position: sticky;
   top: 20px;
   z-index: 100;
@@ -46,26 +35,25 @@ nav {
   align-items: center;
   padding: 10px 0;
   margin-top: 20px;
-  /* Initial states that JS will overwrite */
   border-radius: 20px; 
-  width: 800px;
+  width: clamp(365px, 30vw, 700px);
   margin: 0 auto;
 }
 
 .nav-group {
   display: flex;
-  gap: 3rem;
+  gap: 1.5rem;
   flex: 1;
 }
 
 .nav-group.left {
   justify-content: flex-end;
-  padding-right: 4rem;
+  padding-right: 2rem;
 }
 
 .nav-group.right {
   justify-content: flex-start;
-  padding-left: 4rem;
+  padding-left: 2rem;
 }
 
 .nav-group a {
@@ -86,9 +74,17 @@ nav {
   
   /* Initial states that JS will overwrite */
   width: 350px; 
-  transform: translate(-50%, 30px); 
+  transform: translate(-50%, 25%); 
   transform-origin: center center;
   border-radius: 50%; 
+}
+
+.invite-card {
+    width: 100%;
+}
+
+.welcome-content {
+    justify-content: center;
 }
 
 body.scrolled .sticky-nav {
@@ -102,26 +98,13 @@ body.scrolled .crest {
   transform: translate(-50%, -50%); 
 }
 
-.nav-link {
-    diplay: inline-block;
-    padding: 0.3em 0.5em;
-    color: #E7DFD4FF;
-    text-decoration: none;
-    padding-bottom: 6px;
-    font-size: 1.7em;
-}
-
-.nav-link:hover {
-    border-image: linear-gradient(90deg, #634413FF, #9B7A3E, #634413FF) 1;
-    background-color: rgba(99, 68, 19, 0.1);
-}
-
-.nav-link:active {
-    transform: scale(0.95);
-}
 
 body {
-    background-color: #E7DFD4FF;
+    background-color: #fcf3e2;
+    background-image: url('assets/background_texture.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: auto;
     color: #3C290B;
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
@@ -137,10 +120,12 @@ body {
 }
 
 main {
-    padding-top: 250px;
-    width: 1000px;
+    padding-top: 430px;
+    width: 100%;
+    max-width: 1000px;
     display: block;
     margin: 0 auto;
+    opacity: 0;
 }
 
 h2 {

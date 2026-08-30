@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-        <script src="scripts.js" defer></script>
+        <script type="module" src="main.js" defer></script>
         <title>Wedding Website</title>
 </head>
 <body>
@@ -20,39 +20,28 @@
     
     <nav class="sticky-nav">
         <div class="nav-group left">
-            <a class="" href="#welcome">Welcome</a>
-            <a class="" href="#rsvp">RSVP</a>
+            <a class="" href="#card">Card</a>
+            <a class="" href="#schedule">Schedule</a>
         </div>
 
-        <div class="crest-container">
+        <div class="crest-container" >
             <img class="crest" src="assets/logo.png" alt="Logo with initials">
         </div>
                     
         <div class="nav-group right">
-            <a class="" href="#schedule">Schedule</a>
             <a class="" href="#q&a">Q & A</a>
+            <a class="" href="#rsvp">RSVP</a>
         </div>
     </nav>
 
-    <main class="content">
-    <h2 id="welcome">Welcome</h2>
-    <h2 id="rsvp">RSVP</h2>
-    <button command="show-modal" commandfor="rsvp-dialog">RSVP</button>
-    <dialog id="rsvp-dialog">
-        <button command="close" commandfor="rsvp-dialog">Close</button><br>
-        <h3>RSVP Form</h3>
-        <label>
-            First Name: <input name="first-name" required><br>
-            Last Name: <input name="last-name" required>
-        </label>
-        <br>
-        <button id="search-btn" autofocus>Search</button>
-        <div id="guests-invited">
-        </div>
-        <button command="close" commandfor="rsvp-dialog" id="submit-btn" style="display: none">Submit</button>
-        <br>
-        <div id="submit-msg" style="display: none"></div>
-    </dialog>
+    <main class="content" style="display: block">
+    <h2 id="info">Information</h2>
+    <div class="wedding-info">
+    <p>Sunday, October 18th, 2026 at 6:00 PM</p>
+    <p>Flamborough Hills Golf Club, 71 Hwy 52, Copetown, ON</p>
+    </div>
+    <h2 id="card">Invite Card</h2>
+    <img class="invite-card" src="assets/card_background.png" alt="Invite card">
     <h2 id="schedule">Schedule</h2>
     <h3>Sunday October 18th, 2026</h3>
     <ul>
@@ -73,7 +62,7 @@
         <li>
             <div>
                 <h5>7:30 PM</h5>
-                <h3>1st Course Serve</h3>
+                <h3>1st Course Served</h3>
             </div>
         </li>
         <li>
@@ -104,6 +93,20 @@
     <p>Top speed reaches 45 km/h.</p>
     <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
+    <h2 id="rsvp">RSVP</h2>
+    <button id="rsvp-btn">RSVP</button>
+    <div id="rsvp-section" style="display: none">
+        <label>First Name:</label><input name="first-name" required>
+        </br>
+        <label>Last Name:</label><input name="last-name" required>
+        </br>
+        <button id="search-btn">Search</button>
+        </br>
+        <div id="guests-invited"></div>
+        <div id="search-msg" style="display: none"></div>
+        <button id="submit-btn" style="display: none">Submit</button>
+        <div id="submit-msg" style="display: none"></div>
+    </div>
 </main>
     </body>
 <footer>
