@@ -47,7 +47,7 @@ h1#names {
 }
 
 .nav-accent-img {
-    width: 40px;
+    width: 35px;
 }
 
 nav {
@@ -68,7 +68,7 @@ nav.sticky-nav {
 
 .nav-group {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   flex: 1;
 }
 
@@ -85,7 +85,7 @@ nav.sticky-nav {
 .nav-group a {
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
 }
 
 .crest-container {
@@ -146,7 +146,7 @@ body {
 }
 
 main {
-    padding-top: 430px;
+    padding-top: 460px;
     width: 100%;
     max-width: 1000px;
     display: block;
