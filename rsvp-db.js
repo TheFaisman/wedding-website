@@ -1,12 +1,14 @@
 export async function initRSVP() {
+    // Replace with your Stein Storage ID and Google Sheet tab name
+    const STEIN_API_URL = 'https://api.steinhq.com/v1/storages/6a9483c492b1163e97397b1d/Groups';
 
     // Fetching guest data on page load
     let optimizedGuestMap = {};
     let allSheetRows = [];
 
-    // 1. BACKGROUND FETCH: Start downloading immediately on page load from the single consolidated sheet
+    // 1. BACKGROUND FETCH: Start downloading immediately on page load
     try {
-        const response = await fetch('https://sheetdb.io/api/v1/uaea0471hklew');
+        const response = await fetch(STEIN_API_URL);
         const sheetData = await response.json();
 
         if (!Array.isArray(sheetData)) {
@@ -37,7 +39,6 @@ export async function initRSVP() {
         console.error("Failed to preload guest list:", error);
     }
 
-
     const searchBtn = document.getElementById('search-btn'); 
     const submitBtn = document.getElementById('submit-btn');
     const searchMsg = document.getElementById('search-msg');
@@ -45,6 +46,7 @@ export async function initRSVP() {
     const firstNameInput = document.querySelector('input[name="first-name"]');
     const lastNameInput = document.querySelector('input[name="last-name"]');
     const guestsInvitedDiv = document.getElementById('guests-invited');
+
     searchBtn.addEventListener('click', (event) => {
         event.preventDefault(); 
         
@@ -70,17 +72,15 @@ export async function initRSVP() {
             let htmlContent = '';
 
             groupMembers.forEach(member => {
-                // Pre-check attendance if they previously submitted "Yes"
                 const isChecked = ((member.Attendance === "Yes") || (member.Attendance === "")) ? "checked" : "";
                 const mealValue = member.MealRestrictions && member.MealRestrictions !== "None" ? member.MealRestrictions : "";
-
 
                 htmlContent += `
                   <div class="guest-card">
                     <div class="guest-card-header">
                       <span class="guest-name">${member.GuestName}</span>
                       <label class="attendance-toggle">
-                        <input type="checkbox" ${isChecked}>
+                        <input type="checkbox" class="attendance-checkbox" ${isChecked}>
                         <span class="custom-checkmark"></span>
                         <span class="toggle-label">Attending</span>
                       </label>
@@ -93,7 +93,7 @@ export async function initRSVP() {
                       placeholder="Dietary restrictions or allergies..."
                     >
                   </div>
-                `
+                `;
             });
 
             guestsInvitedDiv.innerHTML = htmlContent;
@@ -112,35 +112,34 @@ export async function initRSVP() {
     submitBtn.addEventListener('click', async (event) => {
         event.preventDefault();
 
-        const rows = guestsInvitedDiv.querySelectorAll('tr');
+        // Selected cards directly instead of 'tr' table rows
+        const guestCards = guestsInvitedDiv.querySelectorAll('.guest-card');
         const updatePromises = [];
-        const pendingLocalUpdates = []; // <-- Store updates locally to keep the map in sync
+        const pendingLocalUpdates = [];
 
-        for (let i = 1; i < rows.length; i++) {
-            const row = rows[i];
-            const guestName = row.querySelector('.guest-name').textContent;
-            const isAttending = row.querySelector('input[name="attendance"]').checked;
-            const dietaryInput = row.querySelector('input[name="diet"]').value.trim();
+        guestCards.forEach(card => {
+            const guestName = card.querySelector('.guest-name').textContent.trim();
+            const isAttending = card.querySelector('.attendance-checkbox').checked;
+            const dietaryInput = card.querySelector('.guest-dietary-input').value.trim();
 
             const attendanceStatus = isAttending ? "Yes" : "No";
             const mealStatus = dietaryInput || "None";
 
-            // Save exactly what we are sending so we can update our local map later
             pendingLocalUpdates.push({
                 GuestName: guestName,
                 Attendance: attendanceStatus,
                 MealRestrictions: mealStatus
             });
 
-            // SheetDB allows updating records using a column identifier like GuestName
-            const updatePromise = fetch(`https://sheetdb.io/api/v1/uaea0471hklew/GuestName/${encodeURIComponent(guestName)}`, {
-                method: 'PATCH',
+            // STEIN UPDATE API: Uses PUT method with condition and set blocks
+            const updatePromise = fetch(STEIN_API_URL, {
+                method: 'PUT',
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    data: {
+                    condition: { GuestName: guestName },
+                    set: {
                         Attendance: attendanceStatus,
                         MealRestrictions: mealStatus
                     }
@@ -148,23 +147,20 @@ export async function initRSVP() {
             }).then(res => res.json());
 
             updatePromises.push(updatePromise);
-        }
+        });
 
         try {
             submitBtn.textContent = "Submitting...";
             submitBtn.disabled = true;
 
-            // Wait for all group member updates to complete concurrently
             await Promise.all(updatePromises);
 
-            // SUCCESS: Now we update our local JavaScript memory so the UI stays synced 
-            // without needing to make another expensive background fetch.
+            // Synchronize local in-memory cache
             pendingLocalUpdates.forEach(update => {
                 const lookupName = update.GuestName.toLowerCase().trim();
                 const group = optimizedGuestMap[lookupName];
                 
                 if (group) {
-                    // Find the exact person object inside the group array and update properties
                     const person = group.find(m => m.GuestName === update.GuestName);
                     if (person) {
                         person.Attendance = update.Attendance;
@@ -186,4 +182,3 @@ export async function initRSVP() {
         }
     });
 }
-
