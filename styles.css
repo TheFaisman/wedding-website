@@ -144,6 +144,7 @@ h3 {
   --lang-active-bg: #4A3315;      /* Selected pill background */
   --lang-active-text: #FFFFFF;    /* Selected text color */
   --lang-inactive-text: #3C290B;  /* Unselected text color */
+  --green: #445302ba;
 }
 
 .toggle-wrapper {
@@ -212,7 +213,7 @@ h3 {
   padding: 2.5rem 2rem;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(3px);
-  border: 10px solid rgba(155, 122, 62, 0.35);
+  border: 10px solid var(--green);
   border-radius: 134px;
   box-shadow: 0 10px 25px rgba(60, 41, 11, 0.06);
   text-align: center;
@@ -306,8 +307,7 @@ h3 {
 
 /* Container spacing & top divider */
 .guest-rsvp-container {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
+  margin-top: 0.5rem;
   border-top: 1px dashed rgba(155, 122, 62, 0.4);
   display: flex;
   flex-direction: column;
@@ -322,6 +322,7 @@ h3 {
   padding: 1rem 1.2rem;
   text-align: left;
   transition: background 0.2s ease;
+  margin-top: 1.5rem;
 }
 
 .guest-card-header {
@@ -341,7 +342,7 @@ h3 {
 .attendance-toggle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
   cursor: pointer;
   user-select: none;
 }
@@ -397,4 +398,97 @@ h3 {
   border-color: #4A3315;
   background: #FFFFFF;
   box-shadow: 0 0 0 2px rgba(74, 51, 21, 0.1);
+}
+
+.timeline-container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: left;
+}
+
+.schedule-title {
+  font-family: "Luxurious Script", cursive;
+  font-size: 3.8rem;
+  color: #3C290B;
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+}
+
+.schedule-date {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #634413;
+  margin: 0.5rem 0 2.5rem 0;
+  letter-spacing: 0.03em;
+}
+
+/* Shift the timeline right to make room for left-aligned timestamps */
+.timeline {
+  position: relative;
+  margin-left: 70px; /* Space reserved on the left of the line */
+  padding-left: 2rem;
+  border-left: 2px solid #9B7A3E;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+/* Node dot sitting directly over the vertical spine */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  
+  /* Horizontal positioning: Target the 2px border center */
+  left: -2.06rem;
+  
+  /* Vertical positioning: Align with the center of the first line of text */
+  top: 0.75em;
+  
+  /* Perfect centering offset */
+  transform: translate(-50%, -50%);
+  
+  /* Dimensions & styles */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4A3315;
+  border: 2px solid #E7DFD4;
+  box-shadow: 0 0 0 2px var(--green);
+  box-sizing: content-box; /* Ensures consistent border sizing */
+}
+
+/* Position time to the left of the vertical spine */
+.timeline-time {
+  position: absolute;
+  left: calc(-2rem - 110px); /* Pushes time out to the left margin */
+  width: 95px;                /* Fixed width for clean right-alignment */
+  text-align: right;          /* Aligns text up against the vertical line */
+  top: 1px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #9B7A3E;
+  line-height: 1.3;
+}
+
+.timeline-event {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #3C290B;
+  margin: 0 0 0.25rem 0;
+}
+
+.timeline-desc {
+  font-size: 0.95rem;
+  color: #634413;
+  margin: 0;
+  line-height: 1.4;
 }
