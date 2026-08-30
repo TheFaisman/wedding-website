@@ -43,7 +43,7 @@ h1#names {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    width: fit-content;
+    width: 100%;
 }
 
 .nav-accent-img {
