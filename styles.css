@@ -44,7 +44,7 @@ nav.sticky-nav {
     position: sticky;
     top: 20px;
     z-index: 100;
-    background-color: var(--choco-brown);
+    background-color: var(--darkest-brown);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -116,7 +116,7 @@ body.scrolled .crest {
 
 body {
     background-color: #fcf3e2;
-    background-image: url('assets/background_texture.png');
+    background-image: url('assets/background_texture_small.png');
     background-repeat: repeat;
     background-attachment: fixed;
     background-size: auto;
@@ -204,7 +204,7 @@ h3 {
 
 /* Active state for checked option */
 .lang-toggle input[type="radio"]:checked + .lang-option {
-  background-color: var(--choco-brown);
+  background-color: var(--darkest-brown);
   color: var(--lang-active-text);
 }
 
@@ -281,7 +281,7 @@ h3 {
 
 .form-group input:focus {
   outline: none;
-  border-color: var(--choco-brown);
+  border-color: var(--darkest-brown);
   background: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(74, 51, 21, 0.12);
 }
@@ -296,7 +296,7 @@ h3 {
   padding-right: 1.0rem;
   padding-left: 1.0rem;
   padding-top: 0.8rem;
-  background-color: var(--choco-brown);
+  background-color: var(--darkest-brown);
   color: #FFFFFF;
   border: none;
   border-radius: 9999px;
@@ -371,8 +371,8 @@ h3 {
 }
 
 .attendance-toggle input[type="checkbox"]:checked {
-  background-color: var(--choco-brown);
-  border-color: var(--choco-brown);
+  background-color: var(--darkest-brown);
+  border-color: var(--darkest-brown);
 }
 
 .attendance-toggle input[type="checkbox"]:checked::before {
@@ -467,7 +467,7 @@ h3 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: var(--choco-brown);
+  background-color: var(--darkest-brown);
   border: 2px solid #E7DFD4;
   box-shadow: 0 0 0 2px var(--green);
   box-sizing: content-box; /* Ensures consistent border sizing */
