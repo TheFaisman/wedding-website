@@ -1,11 +1,4 @@
 export async function initRSVP() {
-    const rsvpBtn = document.getElementById('rsvp-btn');
-    const rsvpForm = document.getElementById('rsvp-section'); 
-    rsvpBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-        rsvpForm.style.display = 'block';
-    });
-
 
     // Fetching guest data on page load
     let optimizedGuestMap = {};

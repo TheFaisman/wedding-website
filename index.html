@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Pinyon+Script&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
         <script type="module" src="main.js" defer></script>
         <title>Wedding Website</title>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="crest-container" >
-            <img class="crest" src="assets/logo.png" alt="Logo with initials">
+            <img class="crest" src="assets/family_crest.png" alt="Logo with initials">
         </div>
                     
         <div class="nav-group right">
@@ -41,6 +41,15 @@
     <p>Flamborough Hills Golf Club, 71 Hwy 52, Copetown, ON</p>
     </div>
     <h2 id="card">Invite Card</h2>
+    <div class="toggle-wrapper">
+        <div class="lang-toggle" role="radiogroup" aria-label="Language selector">
+          <input type="radio" name="lang" id="lang-en" value="en" checked>
+          <label for="lang-en" class="lang-option">English</label>
+
+          <input type="radio" name="lang" id="lang-ar" value="ar">
+          <label for="lang-ar" class="lang-option">العربية</label>
+        </div>
+    </div>
     <img class="invite-card" src="assets/card_background.png" alt="Invite card">
     <h2 id="schedule">Schedule</h2>
     <h3>Sunday October 18th, 2026</h3>
@@ -94,8 +103,7 @@
     <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
     <h2 id="rsvp">RSVP</h2>
-    <button id="rsvp-btn">RSVP</button>
-    <div id="rsvp-section" style="display: none">
+    <div id="rsvp-section">
         <label>First Name:</label><input name="first-name" required>
         </br>
         <label>Last Name:</label><input name="last-name" required>

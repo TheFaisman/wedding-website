@@ -8,10 +8,10 @@ header {
 }
 
 h1#names {
-    font-family: "Luxurious Script", cursive;
+    font-family: "Pinyon Script", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(4.5rem, 6.5vw, 10rem);
+    font-size: clamp(3.7rem, 6.5vw, 10rem);
     white-space: nowrap;
     margin: 0;
     background: linear-gradient(180deg, #3C290B, #634413FF, #9B7A3E);
@@ -26,18 +26,18 @@ nav {
 }
 
 nav.sticky-nav {
-  position: sticky;
-  top: 20px;
-  z-index: 100;
-  background-color: #4A3315;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0;
-  margin-top: 20px;
-  border-radius: 20px; 
-  width: clamp(365px, 30vw, 700px);
-  margin: 0 auto;
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    background-color: #4A3315;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    border-radius: 20px; 
+    width: clamp(365px, 30vw, 700px);
+    margin: 0 auto;
 }
 
 .nav-group {
@@ -74,7 +74,7 @@ nav.sticky-nav {
   
   /* Initial states that JS will overwrite */
   width: 350px; 
-  transform: translate(-50%, 25%); 
+  transform: translate(-50%, 75px); 
   transform-origin: center center;
   border-radius: 50%; 
 }
@@ -134,4 +134,72 @@ h2 {
 
 h3 {
     font-size: 1.5em;
+}
+
+:root {
+  /* Easily tweak your color palette here */
+  --lang-bg: #E7DFD4;             /* Container background color */
+  --lang-border: #9B7A3E;         /* Outer border color */
+  --lang-active-bg: #4A3315;      /* Selected pill background */
+  --lang-active-text: #FFFFFF;    /* Selected text color */
+  --lang-inactive-text: #3C290B;  /* Unselected text color */
+}
+
+.toggle-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Outer pill container */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background-color: var(--lang-bg);
+  border: 1.5px solid var(--lang-border);
+  border-radius: 9999px;
+  user-select: none;
+  width: fit-content;
+  margin: 0 auto 1rem auto;
+}
+
+/* Visually hide native radio buttons */
+.lang-toggle input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Text option labels */
+.lang-option {
+  padding: 6px 18px;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--lang-inactive-text);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lang-option:hover {
+  opacity: 0.75;
+}
+
+/* Active state for checked option */
+.lang-toggle input[type="radio"]:checked + .lang-option {
+  background-color: var(--lang-active-bg);
+  color: var(--lang-active-text);
+}
+
+/* Accessibility focus state */
+.lang-toggle input[type="radio"]:focus-visible + .lang-option {
+  outline: 2px solid var(--lang-border);
+  outline-offset: 2px;
 }

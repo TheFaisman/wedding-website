@@ -20,7 +20,7 @@ export function initNavAnimation() {
         // Width shrinks from 350px to 60px (Difference: 290px)
         const currentWidth = 350 - (progress * 300);
         // Y-Axis moves from initial to -30px to center it 
-        const currentY = 90 - (progress * 120);
+        const currentY = 75 - (progress * 115);
 
         // Apply the exact frame-by-frame styles
         crest.style.width = `${currentWidth}px`;
