@@ -401,7 +401,7 @@ h3 {
 }
 
 /* Matching Dietary Input */
-.guest-dietary-input {
+.guest-input {
   width: 100%;
   padding: 0.65rem 0.85rem;
   background: rgba(255, 255, 255, 0.75);
@@ -482,6 +482,26 @@ h3 {
   border: 2px solid #E7DFD4;
   box-shadow: 0 0 0 2px var(--green);
   box-sizing: content-box; /* Ensures consistent border sizing */
+}
+
+.timeline-item-crest::before {
+  content: "";
+  position: absolute;
+  
+  /* Keep your existing positioning exactly as is */
+  left: -2.06rem;
+  top: 0.75em;
+  transform: translate(-50%, -50%);
+  
+  /* Update dimensions to fit your image */
+  width: 32px;  /* Increased from 12px so the artwork is visible */
+  height: 32px; 
+  
+  /* Replace colors/borders with your image */
+  background-image: url('assets/crest_accent_green_small.png'); /* Insert your image path here */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* Position time to the left of the vertical spine */

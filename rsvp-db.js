@@ -66,15 +66,23 @@ export async function initRSVP() {
             return; 
         }
 
+        const reservedNames = ["additional guest", "mother", "father", "sister", "brother", "daughter", "son", "husband", "wife", "cousin"];
+        if (reservedNames.includes(searchName)) {
+            searchMsg.innerHTML = '<p>Please enter a valid guest name.</p>';
+            searchMsg.style.display = 'block';
+            return;
+        }
+
         const groupMembers = optimizedGuestMap[searchName];
 
         if (groupMembers) {
             let htmlContent = '';
+            let htmlContentRefined = '';
 
             groupMembers.forEach(member => {
-                const isChecked = ((member.Attendance === "Yes") || (member.Attendance === "")) ? "checked" : "";
+                const isChecked = ((member.Attendance === "Yes") || (member.Attendance === "") || (member.Attendance === null)) ? "checked" : "";
                 const mealValue = member.MealRestrictions && member.MealRestrictions !== "None" ? member.MealRestrictions : "";
-
+                const plusOneName = member.PlusOneName && (member.PlusOneName !== "None") ? member.PlusOneName : "";
                 htmlContent += `
                   <div class="guest-card">
                     <div class="guest-card-header">
@@ -94,9 +102,44 @@ export async function initRSVP() {
                     >
                   </div>
                 `;
+
+                htmlContentRefined += `<div class="guest-card">`;
+                htmlContentRefined += `
+                        <div class="guest-card-header">
+                            <span class="guest-name">${member.GuestName}</span>
+                            <label class="attendance-toggle">
+                                <input type="checkbox" class="attendance-checkbox" ${isChecked}>
+                                <span class="custom-checkmark"></span>
+                                <span class="toggle-label">Attending</span>
+                            </label>
+                        </div>
+                `
+                if (reservedNames.includes(member.GuestName.toLowerCase())) {
+                    htmlContentRefined += `
+                        <input
+                            type="text"
+                            class="guest-input"
+                            name="plus-one-name"
+                            value="${plusOneName}"
+                            placeholder="Guest's full name"
+                            style="margin-bottom: 5px;"
+                        >
+                    `
+                }
+
+                htmlContentRefined += `
+                    <input
+                        type="text"
+                        class="guest-input"
+                        name="diet"
+                        value="${mealValue}"
+                        placeholder="Dietary restrictions or allergies..."
+                    >
+                    </div>
+                `
             });
 
-            guestsInvitedDiv.innerHTML = htmlContent;
+            guestsInvitedDiv.innerHTML = htmlContentRefined;
             guestsInvitedDiv.style.display = 'block';
             submitBtn.style.display = 'block';
             submitBtn.focus();
@@ -120,15 +163,18 @@ export async function initRSVP() {
         guestCards.forEach(card => {
             const guestName = card.querySelector('.guest-name').textContent.trim();
             const isAttending = card.querySelector('.attendance-checkbox').checked;
-            const dietaryInput = card.querySelector('.guest-dietary-input').value.trim();
+            const dietaryInput = card.querySelector('input[name="diet"]').value.trim();
+            const plusOneInput = (card.querySelector('input[name="plus-one-name"]')?.value || "").trim();
 
             const attendanceStatus = isAttending ? "Yes" : "No";
             const mealStatus = dietaryInput || "None";
+            const plusOneName = plusOneInput || "N/A";
 
             pendingLocalUpdates.push({
                 GuestName: guestName,
                 Attendance: attendanceStatus,
-                MealRestrictions: mealStatus
+                MealRestrictions: mealStatus,
+                PlusOneName: plusOneName
             });
 
             // STEIN UPDATE API: Uses PUT method with condition and set blocks
@@ -141,7 +187,8 @@ export async function initRSVP() {
                     condition: { GuestName: guestName },
                     set: {
                         Attendance: attendanceStatus,
-                        MealRestrictions: mealStatus
+                        MealRestrictions: mealStatus,
+                        PlusOneName: plusOneName
                     }
                 })
             }).then(res => res.json());
@@ -165,6 +212,7 @@ export async function initRSVP() {
                     if (person) {
                         person.Attendance = update.Attendance;
                         person.MealRestrictions = update.MealRestrictions;
+                        person.PlusOneName = update.PlusOneName;
                     }
                 }
             });
