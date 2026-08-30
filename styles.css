@@ -19,6 +19,7 @@ html {
 header {
     padding: 1.5rem 1rem;
     text-align: center;
+    padding-bottom: 0;
 }
 
 h1#names {
@@ -34,24 +35,35 @@ h1#names {
     background-clip: text;
 }
 
+.sticky-nav-wrapper {
+    position: sticky;
+    top: 15px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.nav-accent-img {
+    width: 40px;
+}
+
 nav {
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
 
 nav.sticky-nav {
-    position: sticky;
-    top: 20px;
-    z-index: 100;
     background-color: var(--choco-brown);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
     margin-top: 20px;
     border-radius: 20px; 
-    width: clamp(365px, 30vw, 700px);
-    margin: 0 auto;
+    width: clamp(335px, 30vw, 700px);
 }
 
 .nav-group {
