@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Luxurious+Script&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Luxurious+Script&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Pinyon+Script&family=Quintessential&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
         <script type="module" src="main.js" defer></script>
@@ -35,12 +35,18 @@
     </nav>
 
     <main class="content" style="display: block">
-    <h2 id="info">Information</h2>
+    <div class="header-group">
+        <h2 id="info">Information</h2>
+        <img class="header-accent" src="assets/flower_1.png">
+    </div>
     <div class="wedding-info">
     <p>Sunday, October 18th, 2026 at 6:00 PM</p>
     <p>Flamborough Hills Golf Club, 71 Hwy 52, Copetown, ON</p>
     </div>
-    <h2 id="card">Invite Card</h2>
+    <div class="header-group">
+        <h2 id="card">Invite Card</h2>
+        <img class="header-accent" src="assets/flower_2.png">
+    </div>
     <div class="toggle-wrapper">
         <div class="lang-toggle" role="radiogroup" aria-label="Language selector">
           <input type="radio" name="lang" id="lang-en" value="en" checked>
@@ -51,45 +57,11 @@
         </div>
     </div>
     <img class="invite-card" src="assets/card_background.png" alt="Invite card">
-    <h2 id="schedule">Schedule</h2>
-    <h3>Sunday October 18th, 2026</h3>
-    <ul>
-        <li>
-            <div>
-                <h5>6:00 PM</h5>
-                <h3>Arrival</h3>
-                <p>Flamborough Hills Golf Club, 71 Hwy 52, Copetown, ON</p>
-            </div>
-        </li>
-        <li>
-            <div>
-                <h5>6:10 PM to 7:00 PM</h5>
-                <h3>Cocktail Hour</h3>
-                <p>Mention of prayer timing</p>
-            </div>
-        </li>
-        <li>
-            <div>
-                <h5>7:30 PM</h5>
-                <h3>1st Course Served</h3>
-            </div>
-        </li>
-        <li>
-            <div>
-                <h5>8:30 PM</h5>
-                <h3>Dinner Service - Main Course Served</h3>
-            </div>
-        </li>
-        <li>
-            <div>
-                <h5>11:00 PM</h5>
-                <h3>Guest Departure</h3>
-                <p>Bye bye!</p>
-            </div>
-        </li>
-    </ul>
     <div class="timeline-container">
-      <h2 class="">New Schedule</h2>
+        <div class="header-group">
+          <h2 id="schedule">Schedule</h2>
+          <img class="header-accent" src="assets/flower_3.png">
+        </div>
       <p class="schedule-date">Sunday, October 18th, 2026</p>
 
       <div class="timeline">
@@ -134,7 +106,10 @@
         </div>
       </div>
     </div>
-    <h2 id="q&a">Q and A</h2>
+    <div class="header-group">
+        <h2 id="q&a">Q and A</h2>
+        <img class="header-accent" src="assets/flower_4.png">
+    </div>
     <p>For friends and family who have questions.</p>
     <h3>What's the RSVP deadline?</h3>
     <p>Tomorrow.</p>
@@ -149,7 +124,7 @@
     <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
     <div class="rsvp-card" id="rsvp">
-      <h2 class="rsvp-title">Rsvp</h2>
+      <h2 class="rsvp-title">RSVP</h2>
       <p class="rsvp-subtitle">Please enter your name to find your invitation</p>
       
       <form class="rsvp-form">

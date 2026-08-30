@@ -106,9 +106,9 @@ body {
     background-attachment: fixed;
     background-size: auto;
     color: #3C290B;
-    font-family: "Roboto", sans-serif;
+    font-family: "Cormorant Upright", serif;
     font-optical-sizing: auto;
-    font-weight: 300;
+    font-weight: 600;
     font-style: normal;
     font-variation-settings:
     "wdth" 100;
@@ -131,10 +131,12 @@ main {
 h2 {
     font-size: 2em;
     font-family: "Pinyon Script", "cursive";
+    text-align: center;
+    margin: 0;
 }
 
 h3 {
-    font-size: 1.1em;
+    font-size: 1.5em;
 }
 
 :root {
@@ -221,8 +223,9 @@ h3 {
 }
 
 .rsvp-title {
-  font-family: "Luxurious Script", cursive;
+  font-family: "Cormorant Upright", serif;
   font-size: 3.8rem;
+  font-weight: 500;
   color: #3C290B;
   margin: 0;
   line-height: 1;
@@ -491,4 +494,15 @@ h3 {
   color: #634413;
   margin: 0;
   line-height: 1.4;
+}
+
+.header-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-accent {
+    width: 50px;
 }
