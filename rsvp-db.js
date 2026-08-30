@@ -67,31 +67,36 @@ export async function initRSVP() {
         const groupMembers = optimizedGuestMap[searchName];
 
         if (groupMembers) {
-            let tableHTML = `
-                <table>
-                    <tr>
-                        <th>Guest Invited</th>
-                        <th>Attendance</th>
-                        <th>Dietary Restrictions*</th>
-                    </tr>
-            `;
+            let htmlContent = '';
 
             groupMembers.forEach(member => {
                 // Pre-check attendance if they previously submitted "Yes"
                 const isChecked = ((member.Attendance === "Yes") || (member.Attendance === "")) ? "checked" : "";
                 const mealValue = member.MealRestrictions && member.MealRestrictions !== "None" ? member.MealRestrictions : "";
 
-                tableHTML += `
-                    <tr>
-                        <td class="guest-name">${member.GuestName}</td>
-                        <td><input name="attendance" type="checkbox" ${isChecked} /></td>
-                        <td><input name="diet" value="${mealValue}" /></td>
-                    </tr>
-                `;
+
+                htmlContent += `
+                  <div class="guest-card">
+                    <div class="guest-card-header">
+                      <span class="guest-name">${member.GuestName}</span>
+                      <label class="attendance-toggle">
+                        <input type="checkbox" ${isChecked}>
+                        <span class="custom-checkmark"></span>
+                        <span class="toggle-label">Attending</span>
+                      </label>
+                    </div>
+                    <input 
+                      type="text" 
+                      class="guest-dietary-input" 
+                      name="diet"
+                      value="${mealValue}"
+                      placeholder="Dietary restrictions or allergies..."
+                    >
+                  </div>
+                `
             });
 
-            tableHTML += `</table>`;
-            guestsInvitedDiv.innerHTML = tableHTML;
+            guestsInvitedDiv.innerHTML = htmlContent;
             guestsInvitedDiv.style.display = 'block';
             submitBtn.style.display = 'block';
             submitBtn.focus();

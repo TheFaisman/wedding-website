@@ -25,7 +25,7 @@
         </div>
 
         <div class="crest-container" >
-            <img class="crest" src="assets/family_crest.png" alt="Logo with initials">
+            <a href="#"><img class="crest" src="assets/family_crest.png" alt="Logo with initials"></a>
         </div>
                     
         <div class="nav-group right">
@@ -116,12 +116,15 @@
           <label for="last-name">Last Name</label>
           <input type="text" name="last-name" placeholder="Last Name" required autocomplete="family-name">
         </div>
-
         <button type="submit" class="rsvp-btn" id="search-btn">Find Invitation</button>
-        <div id="guests-invited"></div>
-        <div id="search-msg" style="display: none"></div>
-        <button type="submit" class="rsvp-btn" id="submit-btn" style="display: none">Submit</button>
-        <div id="submit-msg" style="display: none"></div>
+     
+        <div class="guest-rsvp-container" id="guests-invited">
+
+        </div>
+       
+        <div id="search-msg" style="display: block"></div>
+        <button type="submit" class="rsvp-btn" id="submit-btn" style="display: block">Submit</button>
+        <div id="submit-msg" style="display: block"></div>
       </form>
     </div>
 </main>
