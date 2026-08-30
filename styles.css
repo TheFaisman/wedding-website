@@ -130,10 +130,11 @@ main {
 
 h2 {
     font-size: 2em;
+    font-family: "Pinyon Script", "cursive";
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 
 :root {
@@ -202,4 +203,103 @@ h3 {
 .lang-toggle input[type="radio"]:focus-visible + .lang-option {
   outline: 2px solid var(--lang-border);
   outline-offset: 2px;
+}
+
+/* Container card with frosted glass texture overlay */
+.rsvp-card {
+  max-width: 440px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
+  border: 10px solid rgba(155, 122, 62, 0.35);
+  border-radius: 134px;
+  box-shadow: 0 10px 25px rgba(60, 41, 11, 0.06);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.rsvp-title {
+  font-family: "Luxurious Script", cursive;
+  font-size: 3.8rem;
+  color: #3C290B;
+  margin: 0;
+  line-height: 1;
+}
+
+.rsvp-subtitle {
+  font-size: 0.95rem;
+  color: #634413;
+  margin: 0.5rem 0 1.75rem 0;
+  font-weight: 300;
+}
+
+/* Form layout & custom controls */
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3C290B;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #9B7A3E;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #3C290B;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4A3315;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(74, 51, 21, 0.12);
+}
+
+/* Matching navigation pill button */
+.rsvp-btn {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  margin-right: 2.5rem;
+  margin-left: 2.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1.0rem;
+  padding-left: 1.0rem;
+  padding-top: 0.8rem;
+  background-color: #4A3315;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  font-family: "Pinyon Script", cursive;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.rsvp-btn:hover {
+  background-color: #3C290B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(60, 41, 11, 0.15);
 }

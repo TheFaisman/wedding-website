@@ -88,7 +88,7 @@
             </div>
         </li>
     </ul>
-    <h2 id="q&a">Q&A</h2>
+    <h2 id="q&a">Q and A</h2>
     <p>For friends and family who have questions.</p>
     <h3>What's the RSVP deadline?</h3>
     <p>Tomorrow.</p>
@@ -102,18 +102,27 @@
     <p>Top speed reaches 45 km/h.</p>
     <h3>What's your favourite colour?</h3>
     <p>Brown, duh. Make sure not to wear a brown suit, that's reserved for the handsome groom.</p>
-    <h2 id="rsvp">RSVP</h2>
-    <div id="rsvp-section">
-        <label>First Name:</label><input name="first-name" required>
-        </br>
-        <label>Last Name:</label><input name="last-name" required>
-        </br>
-        <button id="search-btn">Search</button>
-        </br>
+    <div class="rsvp-card" id="rsvp">
+      <h2 class="rsvp-title">Rsvp</h2>
+      <p class="rsvp-subtitle">Please enter your name to find your invitation</p>
+      
+      <form class="rsvp-form">
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" name="first-name" placeholder="First Name" required autocomplete="given-name">
+        </div>
+
+        <div class="form-group">
+          <label for="last-name">Last Name</label>
+          <input type="text" name="last-name" placeholder="Last Name" required autocomplete="family-name">
+        </div>
+
+        <button type="submit" class="rsvp-btn" id="search-btn">Find Invitation</button>
         <div id="guests-invited"></div>
         <div id="search-msg" style="display: none"></div>
-        <button id="submit-btn" style="display: none">Submit</button>
+        <button type="submit" class="rsvp-btn" id="submit-btn" style="display: none">Submit</button>
         <div id="submit-msg" style="display: none"></div>
+      </form>
     </div>
 </main>
     </body>
