@@ -1,3 +1,18 @@
+
+:root {
+  /* Easily tweak your color palette here */
+  --lang-bg: #E7DFD4;             /* Container background color */
+  --lang-border: #9B7A3E;         /* Outer border color */
+  --lang-active-bg: #4A3315;      /* Selected pill background */
+  --lang-active-text: #FFFFFF;    /* Selected text color */
+  --lang-inactive-text: #3C290B;  /* Unselected text color */
+  --green: #445302ba;
+  --dark-brown: #4A3315;
+  --darkest-brown: #3C290B;
+  --choco-brown: #624834;
+
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -29,7 +44,7 @@ nav.sticky-nav {
     position: sticky;
     top: 20px;
     z-index: 100;
-    background-color: #4A3315;
+    background-color: var(--choco-brown);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,15 +154,6 @@ h3 {
     font-size: 1.5em;
 }
 
-:root {
-  /* Easily tweak your color palette here */
-  --lang-bg: #E7DFD4;             /* Container background color */
-  --lang-border: #9B7A3E;         /* Outer border color */
-  --lang-active-bg: #4A3315;      /* Selected pill background */
-  --lang-active-text: #FFFFFF;    /* Selected text color */
-  --lang-inactive-text: #3C290B;  /* Unselected text color */
-  --green: #445302ba;
-}
 
 .toggle-wrapper {
     display: flex;
@@ -198,7 +204,7 @@ h3 {
 
 /* Active state for checked option */
 .lang-toggle input[type="radio"]:checked + .lang-option {
-  background-color: var(--lang-active-bg);
+  background-color: var(--choco-brown);
   color: var(--lang-active-text);
 }
 
@@ -275,7 +281,7 @@ h3 {
 
 .form-group input:focus {
   outline: none;
-  border-color: #4A3315;
+  border-color: var(--choco-brown);
   background: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(74, 51, 21, 0.12);
 }
@@ -290,7 +296,7 @@ h3 {
   padding-right: 1.0rem;
   padding-left: 1.0rem;
   padding-top: 0.8rem;
-  background-color: #4A3315;
+  background-color: var(--choco-brown);
   color: #FFFFFF;
   border: none;
   border-radius: 9999px;
@@ -365,8 +371,8 @@ h3 {
 }
 
 .attendance-toggle input[type="checkbox"]:checked {
-  background-color: #4A3315;
-  border-color: #4A3315;
+  background-color: var(--choco-brown);
+  border-color: var(--choco-brown);
 }
 
 .attendance-toggle input[type="checkbox"]:checked::before {
@@ -411,7 +417,7 @@ h3 {
 }
 
 .schedule-title {
-  font-family: "Luxurious Script", cursive;
+  font-family: "Pinyon Script", cursive;
   font-size: 3.8rem;
   color: #3C290B;
   text-align: center;
@@ -461,7 +467,7 @@ h3 {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #4A3315;
+  background-color: var(--choco-brown);
   border: 2px solid #E7DFD4;
   box-shadow: 0 0 0 2px var(--green);
   box-sizing: content-box; /* Ensures consistent border sizing */
