@@ -2,6 +2,9 @@ export async function initRSVP() {
     // Replace with your Stein Storage ID and Google Sheet tab name
     const STEIN_API_URL = 'https://api.steinhq.com/v1/storages/6a9483c492b1163e97397b1d/Groups';
 
+
+    const reservedNames = ["additional guest", "mother", "father", "sister", "brother", "daughter", "son", "husband", "wife", "cousin"];
+
     // Fetching guest data on page load
     let optimizedGuestMap = {};
     let allSheetRows = [];
@@ -31,7 +34,9 @@ export async function initRSVP() {
         sheetData.forEach(row => {
             if (row.GuestName) {
                 const searchName = row.GuestName.toLowerCase().trim();
-                optimizedGuestMap[searchName] = groupsByID[row.GroupID]; 
+                if (!reservedNames.includes(searchName)) {
+                    optimizedGuestMap[searchName] = groupsByID[row.GroupID]; 
+                }
             }
         });
 
@@ -66,7 +71,6 @@ export async function initRSVP() {
             return; 
         }
 
-        const reservedNames = ["additional guest", "mother", "father", "sister", "brother", "daughter", "son", "husband", "wife", "cousin"];
         if (reservedNames.includes(searchName)) {
             searchMsg.innerHTML = '<p>Please enter a valid guest name.</p>';
             searchMsg.style.display = 'block';
@@ -84,7 +88,7 @@ export async function initRSVP() {
                 const mealValue = member.MealRestrictions && member.MealRestrictions !== "None" ? member.MealRestrictions : "";
                 const plusOneName = member.PlusOneName && (member.PlusOneName !== "None") ? member.PlusOneName : "";
                 htmlContent += `
-                  <div class="guest-card">
+                  <div class="guest-card" data-guest-id="${member.GuestID}">
                     <div class="guest-card-header">
                       <span class="guest-name">${member.GuestName}</span>
                       <label class="attendance-toggle">
@@ -103,7 +107,7 @@ export async function initRSVP() {
                   </div>
                 `;
 
-                htmlContentRefined += `<div class="guest-card">`;
+                htmlContentRefined += `<div class="guest-card" data-guest-id="${member.GuestID}">`;
                 htmlContentRefined += `
                         <div class="guest-card-header">
                             <span class="guest-name">${member.GuestName}</span>
@@ -161,6 +165,7 @@ export async function initRSVP() {
         const pendingLocalUpdates = [];
 
         guestCards.forEach(card => {
+            const guestId = card.dataset.guestId;
             const guestName = card.querySelector('.guest-name').textContent.trim();
             const isAttending = card.querySelector('.attendance-checkbox').checked;
             const dietaryInput = card.querySelector('input[name="diet"]').value.trim();
@@ -171,6 +176,7 @@ export async function initRSVP() {
             const plusOneName = plusOneInput || "N/A";
 
             pendingLocalUpdates.push({
+                GuestID: guestId,
                 GuestName: guestName,
                 Attendance: attendanceStatus,
                 MealRestrictions: mealStatus,
@@ -184,8 +190,9 @@ export async function initRSVP() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    condition: { GuestName: guestName },
+                    condition: { GuestID: guestId },
                     set: {
+                        GuestName: guestName,
                         Attendance: attendanceStatus,
                         MealRestrictions: mealStatus,
                         PlusOneName: plusOneName
