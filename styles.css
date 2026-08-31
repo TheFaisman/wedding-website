@@ -156,6 +156,10 @@ nav.sticky-nav {
     height: auto;
 }
 
+.wedding-info {
+    margin-bottom: 30px;
+}
+
 .invite-card-contents {
     position: absolute;
     top: 50%;
@@ -259,19 +263,21 @@ h3 {
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-top: 15px;
 }
 
 /* Outer pill container */
 .lang-toggle {
   display: inline-flex;
-  align-items: center;
-  padding: 3px;
+  align-items: stretch;
+  padding: 0;
   background-color: var(--lang-bg);
   border: 1.5px solid var(--lang-border);
   border-radius: 9999px;
   user-select: none;
   width: fit-content;
   margin: 0 auto 1rem auto;
+  overflow: hidden;
 }
 
 /* Visually hide native radio buttons */
@@ -289,17 +295,26 @@ h3 {
 
 /* Text option labels */
 .lang-option {
+  display :flex;
+  justify-content: center;
+  align-items: center;
   padding: 6px 18px;
-  border-radius: 9999px;
-  font-size: 0.7rem;
+  font-size: 1.0rem;
   font-weight: 400;
   color: var(--lang-inactive-text);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.lang-ar {
+  font-family: "Noto Naskh Arabic", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 .lang-option:hover {
-  opacity: 0.75;
+  opacity: 0.9;
 }
 
 /* Active state for checked option */
