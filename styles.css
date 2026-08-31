@@ -266,19 +266,6 @@ h3 {
     margin-top: 15px;
 }
 
-/* Outer pill container */
-.lang-toggle {
-  display: inline-flex;
-  align-items: stretch;
-  padding: 0;
-  background-color: var(--lang-bg);
-  border: 1.5px solid var(--lang-border);
-  border-radius: 9999px;
-  user-select: none;
-  width: fit-content;
-  margin: 0 auto 1rem auto;
-  overflow: hidden;
-}
 
 /* Visually hide native radio buttons */
 .lang-toggle input[type="radio"] {
@@ -293,17 +280,52 @@ h3 {
   border: 0;
 }
 
+.lang-toggle {
+  display: inline-flex;
+  align-items: stretch; 
+  background-color: var(--lang-bg);
+  border: 1.5px solid var(--lang-border);
+  border-radius: 9999px;
+  user-select: none;
+  width: fit-content;
+  margin: 0 auto 1rem auto;
+  overflow: hidden;
+  padding: 0; 
+  
+  /* ADDED: Establishes a stacking context so the negative z-index below works correctly */
+  position: relative; 
+  z-index: 1; 
+}
+
+/* THE SLIDER */
+.lang-toggle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%; /* Takes up exactly half the container */
+  background-color: var(--choco-brown);
+  border-radius: 30px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Slides the brown background behind the text, but above the container's background */
+  z-index: -1; 
+}
+
 /* Text option labels */
 .lang-option {
-  display :flex;
-  justify-content: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1; /* ADDED: Forces both labels to be exactly the same width */
+  
   padding: 6px 18px;
   font-size: 1.0rem;
   font-weight: 400;
   color: var(--lang-inactive-text);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lang-ar {
@@ -314,18 +336,26 @@ h3 {
 }
 
 .lang-option:hover {
-  opacity: 0.9;
+  opacity: 1;
 }
 
-/* Active state for checked option */
+/* Move the slider when Arabic is selected */
+.lang-toggle:has(#lang-ar:checked)::before {
+  transform: translateX(100%);
+}
+
+/* 
+  IMPORTANT: Remove or delete your old active state background color rule.
+  Change it to ONLY update the text color, like this: 
+*/
 .lang-toggle input[type="radio"]:checked + .lang-option {
-  background-color: var(--choco-brown);
   color: var(--lang-active-text);
+  /* Make sure there is NO background-color property here anymore */
 }
 
 /* Accessibility focus state */
 .lang-toggle input[type="radio"]:focus-visible + .lang-option {
-  outline: 2px solid var(--lang-border);
+  outline: 2px solid var(--choco-brown);
   outline-offset: 2px;
 }
 
