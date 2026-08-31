@@ -1,5 +1,0 @@
-Some requirements:
-* An RSVP form where users enter their name, and then the invited family members are autofilled in the form
-* An embed of the location
-* A nice logo
-
