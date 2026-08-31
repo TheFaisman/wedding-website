@@ -33,6 +33,41 @@ h1#names {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    z-index: 75;
+    position: relative;
+}
+
+.top-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* How far down the screen the blur reaches */
+  
+  /* Clicks will pass right through this layer to your links/buttons underneath */
+  pointer-events: none; 
+  
+  /* Make sure this is below your sticky nav's z-index (100) but above the text */
+  z-index: 50; 
+  
+  /* Creates the blur */
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px); /* For Safari */
+  
+  /* Fades the blur out smoothly so there is no harsh line */
+  mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,1) 10%, 
+    rgba(0,0,0,0.8) 30%,
+    rgba(0,0,0,0.3) 70%,
+    rgba(0,0,0,0) 100%);
+
+  -webkit-mask-image: linear-gradient(
+    to bottom, 
+    rgba(0,0,0,1) 10%, 
+    rgba(0,0,0,0.8) 30%,
+    rgba(0,0,0,0.3) 70%,
+    rgba(0,0,0,0) 100%);
 }
 
 .sticky-nav-wrapper {
