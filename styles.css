@@ -26,7 +26,7 @@ h1#names {
     font-family: "Pinyon Script", cursive;
     font-weight: 400;
     font-style: normal;
-    font-size: clamp(3.7rem, 6.5vw, 10rem);
+    font-size: clamp(3.5rem, 6.5vw, 10rem);
     white-space: nowrap;
     margin: 0;
     background: linear-gradient(180deg, #3C290B, #634413FF, #9B7A3E);
@@ -510,16 +510,16 @@ h3 {
   transform: translate(-50%, -50%);
   
   /* Dimensions & styles */
-  width: 12px;
-  height: 12px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: var(--choco-brown);
   border: 2px solid #E7DFD4;
-  box-shadow: 0 0 0 2px var(--green);
+  box-shadow: 0 0 0 1px var(--green);
   box-sizing: content-box; /* Ensures consistent border sizing */
 }
 
-.timeline-item-crest::before {
+.timeline-item-pic::before {
   content: "";
   position: absolute;
   
@@ -533,7 +533,27 @@ h3 {
   height: 32px; 
   
   /* Replace colors/borders with your image */
-  background-image: url('assets/crest_accent_green_small.png'); /* Insert your image path here */
+  background-image: url('assets/dot_1_small.png'); /* Insert your image path here */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.timeline-item-crest::before {
+  content: "";
+  position: absolute;
+  
+  /* Keep your existing positioning exactly as is */
+  left: -2.06rem;
+  top: 0.75em;
+  transform: translate(-50%, -50%);
+  
+  /* Update dimensions to fit your image */
+  width: 20px;  /* Increased from 12px so the artwork is visible */
+  height: 20px; 
+  
+  /* Replace colors/borders with your image */
+  background-image: url('assets/dot_1_small.png'); /* Insert your image path here */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
