@@ -141,8 +141,61 @@ nav.sticky-nav {
   border-radius: 50%; 
 }
 
-.invite-card {
+.invite-card-wrapper {
+    position: relative;
     width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+
+    perspective: 1000px;
+}
+
+.invite-card-frame {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.invite-card-contents {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: auto;
+    z-index: 2;
+      
+    /* The animation properties */
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease-in-out;
+    backface-visibility: hidden;
+}
+
+/* --- ENGLISH CARD (FRONT) --- */
+.card-front {
+  /* Default state: visible and facing forward */
+  transform: translate(-50%, -50%) rotateY(0deg);
+  opacity: 1;
+}
+
+.card-front.flipped {
+  /* Flipped state: rotates away and fades out */
+  transform: translate(-50%, -50%) rotateY(180deg);
+  opacity: 0;
+  pointer-events: none; /* Prevents invisible element from blocking clicks */
+}
+
+/* --- ARABIC CARD (BACK) --- */
+.card-back {
+  /* Default state: starts rotated backward and invisible */
+  transform: translate(-50%, -50%) rotateY(-180deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-back.flipped {
+  /* Flipped state: rotates into view and becomes solid */
+  transform: translate(-50%, -50%) rotateY(0deg);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .welcome-content {
