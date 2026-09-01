@@ -157,7 +157,8 @@ nav.sticky-nav {
 }
 
 .wedding-info {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
+    text-align: center;
 }
 
 .invite-card-contents {
@@ -257,6 +258,10 @@ h2 {
 
 h3 {
     font-size: 1.5em;
+}
+
+p {
+    font-weight: 500;
 }
 
 
@@ -384,10 +389,10 @@ h3 {
 }
 
 .rsvp-subtitle {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #634413;
   margin: 0.5rem 0 1.75rem 0;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 /* Form layout & custom controls */
@@ -593,6 +598,7 @@ h3 {
 
 .timeline-item {
   position: relative;
+
 }
 
 /* Node dot sitting directly over the vertical spine */
@@ -701,11 +707,15 @@ h3 {
 }
 
 .info-subtitle-container {
-  position: relative;
-  display: block;
+  display: inline-block;
   width: 90%;
   max-width: 600px; /* Limits size on desktop viewports */
   margin: 0 auto;  /* Centers the frame on the page */
+
+  border: 20px solid transparent;
+  border-image-source: url('assets/subtitle_border.svg');
+  border-image-slice: 30 fill;
+  border-image-repeat: stretch:
 }
 
 .subtitle-frame {
@@ -714,14 +724,9 @@ h3 {
   height: auto;
 }
 
-.info-subtitle-container.info-subtitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  text-align: center;
-  margin: 0;
+.info-subtitle {
+    margin: 0;
+    padding: 10px 15px;
 }
 
 .address {
