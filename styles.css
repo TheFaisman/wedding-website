@@ -723,3 +723,9 @@ h3 {
   text-align: center;
   margin: 0;
 }
+
+.address {
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--choco-brown);
+}
