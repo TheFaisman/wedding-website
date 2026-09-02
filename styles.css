@@ -763,3 +763,35 @@ footer {
   /* You can also add your text color here if it isn't inheriting properly */
   color: var(--lang-active-text); 
 }
+
+.scroll-arrow {
+  position: absolute;
+  /* Adjust this bottom value depending on the height of your hero container */
+  bottom: 40px; 
+  left: 50%;
+  width: 35px;
+  height: 35px;
+  color: var(--choco-brown); /* Matches your theme */
+  
+  /* Centers the arrow itself and pulls it back 50% on the X-axis */
+  transform: translateX(-50%);
+  
+  /* The bounce animation */
+  animation: bounce 2s infinite;
+  
+  /* Smooths out the JavaScript opacity updates */
+  transition: opacity 0.1s ease-out; 
+}
+
+/* Keyframes for the bouncing effect */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
