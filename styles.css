@@ -17,6 +17,15 @@ html {
     scroll-padding-top: 100px;
 }
 
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+.page-padding {
+    margin: 8px;
+}
+
 header {
     padding: 1.5rem 1rem;
     text-align: center;
@@ -733,4 +742,24 @@ p {
     font-size: 0.8rem;
     text-decoration: none;
     color: var(--choco-brown);
+}
+
+footer {
+  /* Your existing styles */
+  background-color: #1c0d00;
+  height: 50px;
+  width: 100%;
+  margin: 0;
+  
+  /* Add these 3 lines: */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+}
+
+.footer-text {
+  margin: 0; /* Removes the invisible spacing above and below the text */
+  
+  /* You can also add your text color here if it isn't inheriting properly */
+  color: var(--lang-active-text); 
 }
