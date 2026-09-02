@@ -1,6 +1,6 @@
 export async function initRSVP() {
     // Replace with your Stein Storage ID and Google Sheet tab name
-    const STEIN_API_URL = 'https://api.steinhq.com/v1/storages/6a9483c492b1163e97397b1d/Groups';
+    const STEIN_API_URL = 'https://api.steinhq.com/v1/storages/6a9483c492b1163e97397b1d/DanaInvites';
 
 
     const reservedNames = ["additional guest", "mother", "father", "sister", "brother", "daughter", "son", "husband", "wife", "cousin"];
